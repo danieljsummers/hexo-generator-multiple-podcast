@@ -1,0 +1,15 @@
+{
+  "name": "hexo-generator-multiple-podcast",
+  "version": "0.9.0",
+  "description": "A Hexo generator that can generate multiple podcasts per blog",
+  "main": "index.js",
+  "repository": "https://github.com/danieljsummers/hexo-generator-multiple-podcast.git",
+  "author": "Daniel J. Summers <daniel@bitbadger.solutions>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "nunjucks": "^3.0.1",
+    "string": "^3.3.3",
+    "xml-escape": "^1.1.0"
+  }
+}
