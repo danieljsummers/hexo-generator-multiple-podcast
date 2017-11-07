@@ -49,13 +49,12 @@
       <content:encoded><![CDATA[ {{ episode.content_encoded | safe }} ]]></content:encoded>
       {% endif -%}
       <dc:creator>{{ feedConfig.itunes.owner }}</dc:creator>
-      <itunes:author>{{ feedConfig.itunes.owner }}</itunes:author>
-      {%- if episode.subtitle %}
-      <itunes:subtitle>{{ episode.subtitle | striptags }}</itunes:subtitle>
-      <itunes:summary>{{ episode.subtitle | striptags }}</itunes:summary>
-      {% endif -%}
-      <itunes:image href="{{ config.url }}{{ config.root }}{{ episode.image }}" />
       <enclosure url="{{ episode.media }}" length="{{ episode.length }}" type="{{ episode.media_type }}" />
+      <itunes:author>{{ feedConfig.itunes.owner }}</itunes:author>
+      <itunes:subtitle>{{ episode.subtitle }}</itunes:subtitle>
+      <itunes:summary>{{ episode.content | striptags }}</itunes:summary>
+      <itunes:image href="{{ config.url }}{{ config.root }}{{ episode.image }}" />
+      <itunes:explicit>{{ episode.explicit }}</itunes:explicit>
       <itunes:duration>{{ episode.duration }}</itunes:duration>
       {%- if episode.chapters %}
       <psc:chapters version="1.2">

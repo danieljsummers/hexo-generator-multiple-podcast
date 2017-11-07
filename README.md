@@ -5,6 +5,8 @@ This is very much beta software, and it's not even quite feature-complete. Use a
 
 ## Configuration Quick Reference
 
+In `_config.yml`
+
 ```yaml
 podcasts:
 - feed:
@@ -54,4 +56,26 @@ hexo.config.podcasts[1].feed.content = post =>
   `${post.content} - BOO-YAH!`
 hexo.config.podcasts[1].feed.content_encoded = post =>
   `${post.content} - <strong>BOO-YAH!</strong>`
+```
+
+In each post:
+
+```yaml
+---
+title: The Next Episode
+date: 2017-04-22 12:34:56
+# categories: or tags:, as appropriate
+media: episode-file-name.mp3 # or a complete path; required (will be appended to feed:media_base_url)
+length: 3443223 # size of the file in bytes; required
+duration: "14:38" # HH:MM:SS or MM:SS; required
+subtitle: Soon to the be the previous episode # optional (defaults to empty)
+media_type: audio/mpeg # MIME type of the media file; optional (defaults to feed:default_media_type)
+author: Me # optional (defaults to feed:itunes:author)
+image: next.png # for the episode; optional (defaults to feed:image)
+explicit: clean # optional (defaults to feed:itunes:explicit)
+chapters: # optional, excluded from feed if absent
+- [ "00:00:00.000", "Chapter 1" ]
+- [ "00:05:00.000", "Five Minutes In" ]
+# and so on
+---
 ```
