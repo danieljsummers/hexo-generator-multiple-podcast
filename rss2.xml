@@ -7,8 +7,8 @@
      xmlns:psc="http://podlove.org/simple-chapters/"
      xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/">
   <channel>
-    <title>{{ feedConfig.title | xml_escape }}</title>
-    <description>{{ feedConfig.subtitle | xml_escape }}</description>
+    <title>{{ feedConfig.title }}</title>
+    <description>{{ feedConfig.subtitle }}</description>
     <link>{{ url }}</link>
     <atom:link href="{{ feedConfig.self_url }}" rel="self" type="application/rss+xml" />
     {%- if feedConfig.copyright %}
@@ -18,17 +18,17 @@
     <lastBuildDate>{{ as_of | date_to_rfc822 }}</lastBuildDate>
     <generator>Hexo v{{ hexo_version }}</generator>
     <language>{{ feedConfig.language }}</language>
-    <managingEditor>{{ feedConfig.itunes.email }} ({{ feedConfig.itunes.owner | xml_escape }})</managingEditor>
+    <managingEditor>{{ feedConfig.itunes.email }} ({{ feedConfig.itunes.owner }})</managingEditor>
     <image>
-      <title>{{ feedConfig.title | xml_escape }}</title>
+      <title>{{ feedConfig.title }}</title>
       <url>{{ config.url }}{{ config.root }}{{ feedConfig.image }}</url>
       <link>{{ url }}</link>
     </image>
-    <itunes:summary>{{ feedConfig.itunes.summary | xml_escape }}</itunes:summary>
-    <itunes:author>{{ feedConfig.itunes.author | xml_escape }}</itunes:author>
-    <itunes:subtitle>{{ feedConfig.itunes.subtitle | xml_escape }}</itunes:subtitle>
+    <itunes:summary>{{ feedConfig.itunes.summary }}</itunes:summary>
+    <itunes:author>{{ feedConfig.itunes.author }}</itunes:author>
+    <itunes:subtitle>{{ feedConfig.itunes.subtitle }}</itunes:subtitle>
     <itunes:owner>
-      <itunes:name>{{ feedConfig.itunes.owner | xml_escape }}</itunes:name>
+      <itunes:name>{{ feedConfig.itunes.owner }}</itunes:name>
       <itunes:email>{{ feedConfig.itunes.email }}</itunes:email>
     </itunes:owner>
     <itunes:image href="{{ config.url }}{{ config.root }}{{ feedConfig.image }}" />
@@ -38,29 +38,29 @@
     <itunes:explicit>{{ feedConfig.itunes.explicit }}</itunes:explicit>
     <rawvoice:subscribe feed="{{ feedConfig.self_url }}" itunes="{{ feedConfig.itunes.url }}" />
     {% for episode in episodes %}<item>
-      <title>{{ episode.title | xml_escape}}</title>
+      <title>{{ episode.title }}</title>
       <link>{{ episode.permalink }}</link>
       <pubDate>{{ episode.date | date_to_rfc822 }}</pubDate>
-      <guid isPermalink="true">{{ episode.permalink }}</guid>
+      <guid>{{ episode.permalink }}</guid>
       {%- if feedConfig.content %}
-      <description>{{ episode.content | strip_html | xml_escape }}</description>
-      {% endif -%}
+      <description>{{ episode.content | striptags }}</description>
+      {%- endif -%}
       {%- if feedConfig.content_encoded %}
       <content:encoded><![CDATA[ {{ episode.content_encoded | safe }} ]]></content:encoded>
       {% endif -%}
-      <dc:creator>{{ feedConfig.itunes.owner | xml_escape }}</dc:creator>
-      <itunes:author>{{ feedConfig.itunes.owner | xml_escape }}</itunes:author>
+      <dc:creator>{{ feedConfig.itunes.owner }}</dc:creator>
+      <itunes:author>{{ feedConfig.itunes.owner }}</itunes:author>
       {%- if episode.subtitle %}
-      <itunes:subtitle>{{ episode.subtitle | xml_escape }}</itunes:subtitle>
-      <itunes:summary>{{ episode.subtitle | strip_html | xml_escape }}</itunes:summary>
+      <itunes:subtitle>{{ episode.subtitle | striptags }}</itunes:subtitle>
+      <itunes:summary>{{ episode.subtitle | striptags }}</itunes:summary>
       {% endif -%}
       <itunes:image href="{{ config.url }}{{ config.root }}{{ episode.image }}" />
       <enclosure url="{{ episode.media }}" length="{{ episode.length }}" type="{{ episode.media_type }}" />
       <itunes:duration>{{ episode.duration }}</itunes:duration>
       {%- if episode.chapters %}
-      <psc:chapters version="1.2" xmlns:psc="http://podlove.org/simple-chapters">
+      <psc:chapters version="1.2">
         {% for chapter in episode.chapters -%}
-          <psc:chapter start="{{ chapter[0] }}" title="{{ chapter[1] | xml_escape }}" />
+          <psc:chapter start="{{ chapter[0] }}" title="{{ chapter[1] }}" />
         {%- endfor %}
       </psc:chapters>
       {% endif %}
