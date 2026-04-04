@@ -26,6 +26,6 @@
   "homepage": "https://github.com/danieljsummers/hexo-generator-multiple-podcast#readme",
   "private": false,
   "dependencies": {
-    "nunjucks": "^3.0.1"
+    "nunjucks": "^3.2.4"
   }
 }
